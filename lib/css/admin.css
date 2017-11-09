@@ -1,0 +1,13 @@
+
+
+.chart_box .histogram_chart{
+    width: 50%;
+    float: left;
+    height: 400px;
+}
+
+.chart_box .pie_chart{
+    width: 50%;
+    float: right;
+    height: 400px;
+}

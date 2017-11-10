@@ -1,0 +1,9 @@
+.table.table-bordered th,
+.table.table-bordered tr{
+    text-align: center;
+    vertical-align: middle;
+}
+
+table{
+    margin-top: 10px;
+}

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+    <script src="./bootstrap-validator/css/bootstrapValidator.min.css"></script>
     <link rel="stylesheet" href="./css/common.css">
     <link rel="stylesheet" href="./css/product.css">
     <title>Document</title>
@@ -34,7 +35,6 @@
                         <a href="first.html">一级分类</a>
                         <a href="second.html">二级分类</a>
                     </div>
-
                 </li>
                 <li>
                     <a href="product.html">
@@ -63,12 +63,24 @@
                     <li class="active">商品管理</li>
                 </ol>
             </div>
-
-            <div class="chart_box">
-                <div class="histogram_chart"></div>
-                <div class="pie_chart"></div>
-            </div>
-
+            <button class="btn btn-default mb_20 btn_add">添加商品</button>
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <td width="5%">序号</td>
+                        <td width="25%">商品名称</td>
+                        <td width="25%">商品描述</td>
+                        <td width="10%">商品库存</td>
+                        <td width="10%">商品尺寸</td>
+                        <td width="10%">商品状态</td>
+                        <td width="15%">操作</td>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <div class="text-right">
+                <ul id="paginator"></ul>
+              </div>
         </div>
     </div>
 
@@ -95,10 +107,99 @@
         </div>
     </div>
 
+    <div class="modal fade" tabindex="-1" id="addModal">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                    <h4 class="modal-title">添加分类</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="form">
+                        <div class="form-group">
+                            <div class="dropdown">
+                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="true">
+                                    <span class="dropdown-text">请选择二级分类</span>
+                                    <span class="caret"></span>
+
+                                    <input type="hidden" id="brandId" name="brandId">
+                                </button>
+                                <ul class="dropdown-menu">
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-contorl" name="proName" placeholder="请输入商品名称">
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" rows="3" name="proDesc" placeholder="请输入商品描述"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="oldPrice" placeholder="请输入商品原价">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="price" placeholder="请输入商品价格">
+                        </div>
+
+                        <div class="form-group">
+                            <div class="upload_box">
+                                <button class="btn btn-default">上传图片</button>
+                                <input type="file" id="fileupload" name="pic1" data-url="/product/addProductPic" class="btn btn-default" multiple>
+                            </div>
+                        </div>
+                        <div class="form-group img_box">
+                            <input type="hidden" name="productLogo" id="productLogo">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary btn_confirm">确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="./jquery/jquery.min.js"></script>
     <script src="./bootstrap/js/bootstrap.min.js"></script>
+    <script src="./artTemplate/template-web.js"></script>
+    <script src="./bootstrap-paginator/bootstrap-paginator.min.js"></script>
+    <script src="./bootstrap-validator/js/bootstrapValidator.min.js"></script>
+    <script src="./jquery-fileupload/jquery.ui.widget.js"></script>
+    <script src="./jquery-fileupload/jquery.fileupload.js"></script>
     <script src="./jquery/common.js"></script>
     <script src="./jquery/product.js"></script>
+
+    <script type='text/html' id='tpinner'>
+        {{each rows v i}}
+            <tr>
+                <td>{{(page-1)*size+i+1}}</td>
+                <td>{{v.proName}}</td>
+                <td>{{v.proDesc}}</td>
+                <td>{{v.num}}</td>
+                <td>{{v.size}}</td>
+                <td>{{v.statu===1?'已上架':'已下架'}}</td>
+                <td>{{if v.statu ===1}}
+                    <button class="btn btn-danger">下架</button>
+                    {{else if v.statu === 0}}
+                    <button class="btn btn-success">上架</button>
+                    {{/if}}
+                </td>
+            </tr>
+
+        {{/each}}
+    </script>
+    <script type='text/html' id='tpselect'>
+    {{each rows v i}}
+        <li>
+            <a href="javascript:;" data-id="{{v.id}}">{{v.brandName}}</a>
+        </li>
+    {{/each}}
+    </script>
 </body>
 
 </html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>乐淘商城-首页</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./lib/mui/css/mui.css">
+    <link rel="stylesheet" href="./lib/fa/css/font-awesome.css">
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./css/search.css">
+</head>
+
+<body>
+    <div id="layout">
+        <header id="header">
+            <a href="letao.html" class="letao_home">
+                <span class="mui-icon mui-icon-back"></span>
+            </a>
+            <h4>搜索中心</h4>
+        </header>
+        <div id="contain">
+            <div class="mui-scroll-wrapper">
+                <div class="mui-scroll">
+                    <div class="search_box">
+                        <input type="text" placeholder="请输入搜索关键字">
+                        <button class="mui-btn-blue">搜索</button>
+                    </div>
+                    <div class="history_lis">
+                        <div class="title mui-clearfix">
+                            <span class="mui-pull-left">搜索历史</span>
+                            <span class="mui-pull-right mui-pull-right fa fa-trash btn_empty">清空记录</span>
+                        </div>
+                        <ul>
+                            <li>
+                                <a href="" class="mui-pull-left">123123</a>
+                                <span class="mui-pull-right mui-icon mui-icon-closeempty btn_delete"></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer id="footer">
+        <ul class="mui-clearfix">
+            <li class="now">
+                <a href="letao.html">
+                    <span class="fa fa-home"></span>
+                    <p>首页</p>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <span class="fa fa-bars"></span>
+                    <p>分类</p>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <span class="fa fa-shopping-cart"></span>
+                    <p>购物车</p>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <span class="fa fa-user"></span>
+                    <p>会员中心</p>
+                </a>
+            </li>
+        </ul>
+    </footer>
+    </div>
+
+    <script src="./lib/mui/js/mui.js"></script>
+    <script src="./js/common.js"></script>
+    <script src="./js/search.js"></script>
+
+    <script type='text/html' id='tpinner'>
+        {{if arr.length === 0 }}
+        <p>没有搜索记录</p>
+        {{/if}} 
+        
+        {{if arr.length > 0 }}
+        <div class="title mui-clearfix">
+            <span class="mui-pull-left">搜索历史</span>
+            <span class="mui-pull-right mui-pull-right fa fa-trash btn_empty">清空记录</span>
+        </div>
+        <ul class="content">
+            {{each arr v i}}
+            <li class="mui-clearfix">
+                <a class="mui-pull-left" href="#">{{v}}</a>
+                <span data-index="{{i}}" class="mui-pull-right mui-icon mui-icon-closeempty btn_delete"></span>
+            </li>
+            {{/each}}
+        </ul>
+        {{/if}}
+    </script>
+</body>
+
+</html>
